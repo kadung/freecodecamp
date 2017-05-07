@@ -1,0 +1,153 @@
+
+<!--
+Link to online resource 
+-->
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+
+<!--
+Create CSS
+-->
+<style>
+<!-- To create a CSS class put the dot (.) before classname and put content in the braclet 
+	 Element can be created with specific CSS class-->
+  .red-text {
+    color: red;
+  }
+  
+  .thick-green-border {
+    border-color: green;
+    border-width: 10px;
+    border-style: solid;
+	border-radius: 50%;			<!-- value can be percentage or pixel. Ex: 50% is circle border -->
+  }
+
+  .smaller-image {
+    width: 100px;
+  }
+  
+<!-- To make all element with same define tag inherit all the style -->
+  h2 {
+    font-family: Lobster, Monospace;		<!-- will use 1 of these font -->
+  }
+
+  p {
+    font-size: 16px;
+    font-family: Monospace;
+  }
+  
+  <!-- Use an ID Attribute to Style an Element: reference ids by putting a # in front of their names.-->
+  #cat-photo-form {
+    background-color: green;
+  }
+  
+  <!-- The Margin is the extra space around the control/content
+	 If you set an element's margin to a negative value, the element will grow larger.
+	 Top/Bottom margins are collapsible
+	 
+	 The Padding is extra space inside the control
+	 
+	 Border is the line padding or margin (limit/size) -->
+  <img src="https://i.stack.imgur.com/D9nU6.gif" alt="enter image description here">
+  
+  <!-- Custom margin/padding -->
+  .normal {
+    margin-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 30px;
+	margin-right: 40px;
+	
+    padding-top: 10px;
+	padding-left: 20px;
+	padding-bottom: 30px;
+	padding-right: 40px;
+  }
+  
+  <!-- Custom clockwise notation: padding-top, padding-right, padding-bottom, and padding-left -->
+  .clockwise {
+    padding: 10px 20px 10px 20px;
+	margin: 10px 20px 10px 20px;
+  }
+  
+  <!-- Body style: all elements inherit to body style if they do not have specific style
+	   If element has specific style class, then it will overide the body style -->
+	   body {
+	     color: green;
+	   }
+	   
+	   
+  
+</style>
+
+<!-- Create a header -->
+<h2 class="red-text">CatPhotoApp</h2>
+
+<!-- If the element has many class, the browser will use whichever CSS declaration came last -->
+<h1 class= "red-text blue-text">Test overide function<h1>
+
+<!-- Adding image with img element
+	 Add explain text when image is not loaded with alt element
+	 Add a element before img element to turn a image into a Link-->
+<img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back. ">
+
+<!-- Link to External Pages with a element (embedded a hyperlink on a text)
+	 Nesting just means putting one element inside of another element.
+	 href can set to # when you do not know the linked website-->
+<p>Click here for <a href="http://www.freecatphotoapp.com">cat photos</a>.</p>
+
+<!-- Add a paragraph P element -->
+<p class="red-text">Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
+
+
+<!-- The <div> tag defines a division or a section in an HTML document (grouping element to a seperate retangle)
+	 The <div> tag is used to group block-elements to format them with CSS 
+	 Give a Background Color to a DIV element-->
+<div>
+	<!-- Create a Bulleted Unordered List -->
+	<p>Thing Cat Love</p>
+	<ul>
+	  <li>cat nip</li>
+	  <li>laser pointers</li>
+	  <li>lasagna</li>
+	</ul>
+
+	<!-- Create a Ordered List -->
+	<p>Thing Cat hate</p>
+	<ol>
+	  <li>flea treatment</li>
+	  <li>thunder</li>
+	  <li>other cats</li>
+	</ol>
+</div>
+
+
+<input type="text" placeholder="CatURL">
+
+<!-- The HTML <form> element defines a form that is used to collect user input 
+	 Input, submit, text should be in a form 
+	 We can set ID for any element-->
+<form id="cat-photo-form>
+  <!-- Create a Text Field with placeholder text inside - Note that input elements are self-closing 
+	   You can require specific form fields so that your user will not be able to submit your form 
+	   until he or she has filled them out. By enter required in input element -->
+  <input type="text" placeholder="cat photo URL" required>
+  
+  <!-- Create a submit buton -->
+  <button type="submit">Submit</button>
+  
+  <!-- Create a Set of Radio Buttons: Radio buttons are a type of input 
+	 Each of your radio buttons should be nested within its own label element.
+	 All related radio buttons should have the same name attribute.
+	 You can enable the default CHECK by entering "checked"-->
+  <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
+  <label><input type="radio" name="indoor-outdoor"> Outdoor</label>	 
+  
+  <!-- Create a check box: Checkboxes are a type of input
+	   Each of your checkboxes should be nested within its own label element.
+	   All related checkbox inputs should have the same name attribute.
+	   You can enable the default CHECK by entering "checked"-->
+  <label><input type="checkbox" name="personality" checked> Lazy</label>
+  <label><input type="checkbox" name="personality"> Energetic</label>
+</form>
+
+<!-- Every HTML page has a body element, and that its body element can also be styled with CSS.
+	 Body element can be styled as any other HTML element, and all your other elements will inherit your body element's styles.-->
