@@ -9,7 +9,12 @@ Create CSS
 -->
 <style>
 <!-- To create a CSS class put the dot (.) before classname and put content in the braclet 
-	 Element can be created with specific CSS class-->
+	 Element can be created with specific CSS class -->
+  .yellow-text {
+	color: yellow !important;
+  }
+  
+  
   .red-text {
     color: red;
   }
@@ -70,11 +75,25 @@ Create CSS
   
   <!-- Body style: all elements inherit to body style if they do not have specific style
 	   If element has specific style class, then it will overide the body style -->
-	   body {
-	     color: green;
-	   }
+  body {
+	color: green;
+	
+  }
 	   
-	   
+  #orange-text {
+    color: orange;
+  }  
+  
+  <!-- In CSS, we can use 6 hexadecimal digits to represent colors, two each for the red (R), green (G), and blue (B) components. 
+	   For example, #000000 is black and is also the lowest possible value. More info: https://en.wikipedia.org/wiki/RGB_color_model -->   
+  .hex-color {
+    color: #000000 ;
+  }
+  
+  <!-- Another way you can represent colors in CSS is by using RGB values EX: rgb(x, y, z) 	//x,y,z = 0->255 -->
+  .rgb-color {
+    color: rgb(0,0,0)
+  }
   
 </style>
 
@@ -84,6 +103,17 @@ Create CSS
 <!-- If the element has many class, the browser will use whichever CSS declaration came last -->
 <h1 class= "red-text blue-text">Test overide function<h1>
 
+<!-- id declarations override class declarations, regardless of where they are declared in your style element CSS -->
+<h1 id="orange-text" class= "red-text blue-text">Test overide via ID style<h1>
+
+<!-- In-line styles will override all the CSS declarations in your style element. -->
+<h1 id="orange-text" class= "red-text blue-text" style="color:white">Test overide via inline style<h1>
+
+<!-- why you would ever want to override CSS because you use CSS libraries. These may accidentally override your own CSS 
+	 So when you absolutely need to be sure that an element has specific CSS, you can use !important
+	 This is the most powerful method of all (most priority), check yellow style class for structure -->
+<h1  id="orange-text" class= "red-text blue-text yellow-text" style="color:white">Test overide via inline style<h1>
+	 
 <!-- Adding image with img element
 	 Add explain text when image is not loaded with alt element
 	 Add a element before img element to turn a image into a Link-->
