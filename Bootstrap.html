@@ -29,11 +29,11 @@
 </style>
 
 <div class="container-fluid">
-	<h2 class="red-text">CatPhotoApp</h2>
+	<!-- text-primary is pre-define blue color text -->
+	<h2 class="text-primary">CatPhotoApp</h2>
 
-	<p>Click here for <a href="#">cat photos</a>.</p>
-
-	<a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back. "></a>
+	
+	<a href="#"><img class="img-responsive thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back. "></a>
 	
 	<!-- img-responsive from bootstrap lib provides the image with fitting the device screen resolution -->
 	<img src="https://bit.ly/fcc-running-cats" class="img-responsive" alt="Three kittens running towards the camera. ">
@@ -41,22 +41,37 @@
 	<!-- Add button with bootstrap: class of btn are only as wide as the text that they contain -->
 	<button class="btn">Like</button>
 	
-	<!-- Add button with bootstrap: Note that these class is required class btn and btn-block
-	btn-block class stretch to fill your page's entire horizontal space and any elements following it will flow onto a "new line" below the block
-	btn-primary class is pre-define blue color button from bootstrap
-	btn-info class is pre-define blue sky color button from bootstrap
-	btn-info class is pre-define red color button from bootstrap	-->
-	<button class="btn btn-block btn-primary">Submit</button>
-	<button class="btn btn-block btn-info">Info</button>
-	<button class="btn btn-block btn-danger">Danger</button>
-
+	<!-- Bootstrap uses a responsive grid system which makes it easy to put elements into rows and specify each element's relative width -->
+	<div class="row">
+		<!-- Note that the col-xs-* class is being used: xs means extra small (can change to anther format size as md, ... 
+			 and * is a number specifying how many columns wide the element should be
+			 See here for more detial https://v4-alpha.getbootstrap.com/layout/grid/ and http://i.imgur.com/FaYuui8.png -->
+		<div class="col-xs-4">
+			<!-- Add button with bootstrap: Note that these class is required class btn and btn-block
+			btn-block class stretch to fill your page's entire horizontal space and any elements following it will flow onto a "new line" below the block
+			btn-primary class is pre-define blue color button from bootstrap -->
+			<button class="btn btn-block btn-primary">Submit</button>
+		</div>
+		<div class="col-xs-4"
+			<!-- btn-info class is pre-define blue sky color button from bootstrap -->
+			<button class="btn btn-block btn-info">Info</button>
+		</div>
+		<div class="col-xs-4">
+			<!-- btn-danger class is pre-define red color button from bootstrap -->
+			<button class="btn btn-block btn-danger">Danger</button>
+		</div>
+	</div>
+	
 	<p>Things cats love:</p>
 	<ul>
 	  <li>cat nip</li>
 	  <li>laser pointers</li>
 	  <li>lasagna</li>
 	</ul>
-	<p>Top 3 things cats hate:</p>
+	<!-- Use Spans for Inline Elements: using the span element, you can put several elements together, and even style different parts of the same 
+		 element differently 
+		 Inline element is the thing of a part of a row, Block element is the thing contain a full row-->
+	<p>Top 3 things cats <span class="text-danger">hate:</span></p>
 	<ol>
 	  <li>flea treatment</li>
 	  <li>thunder</li>
