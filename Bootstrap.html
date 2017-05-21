@@ -2,6 +2,11 @@
 <!-- Add bootstrap library -->
 <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
 
+<!-- Add Awesome Font: is a convenient library of icons. These icons are vector graphics, stored in the .svg file format
+	 These icons are treated just like fonts. You can specify their size using pixels, and they will assume the font size 
+	 of their parent HTML elements. -->
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
 <style>
   .red-text {
     color: red;
@@ -50,15 +55,16 @@
 			<!-- Add button with bootstrap: Note that these class is required class btn and btn-block
 			btn-block class stretch to fill your page's entire horizontal space and any elements following it will flow onto a "new line" below the block
 			btn-primary class is pre-define blue color button from bootstrap -->
-			<button class="btn btn-block btn-primary">Submit</button>
+			<!-- Adding the Font Awesome classes to the i element to turn it into an icon --> 
+			<button class="btn btn-block btn-primary"><i class="fa fa-thumbs-up"></i>Submit</button>
 		</div>
 		<div class="col-xs-4"
 			<!-- btn-info class is pre-define blue sky color button from bootstrap -->
-			<button class="btn btn-block btn-info">Info</button>
+			<button class="btn btn-block btn-info"><i class="fa fa-info-circle"></i>Info</button>
 		</div>
 		<div class="col-xs-4">
 			<!-- btn-danger class is pre-define red color button from bootstrap -->
-			<button class="btn btn-block btn-danger">Danger</button>
+			<button class="btn btn-block btn-danger"><i class="fa fa-info-circle"></i>Danger</button>
 		</div>
 	</div>
 	
@@ -78,13 +84,24 @@
 	  <li>other cats</li>
 	</ol>
 
+
 	<form action="/submit-cat-photo">
-	  <label><input type="radio" name="indoor-outdoor"> Indoor</label>
-	  <label><input type="radio" name="indoor-outdoor"> Outdoor</label>
-	  <label><input type="checkbox" name="personality"> Loving</label>
-	  <label><input type="checkbox" name="personality"> Lazy</label>
-	  <label><input type="checkbox" name="personality"> Crazy</label>
-	  <input type="text" placeholder="cat photo URL" required>
-	  <button type="submit">Submit</button>
+		<!-- Responsively Style Radio Buttons: You can use Bootstrap's col-xs-* classes on form elements, too! This way, our radio buttons will be 
+			 evenly spread out across the page, regardless of how wide the screen resolution is -->
+		<div class="row">
+			<div class="col-xs-6><label><input type="radio" name="indoor-outdoor"> Indoor</label></div>
+			<div class="col-xs-6><label><input type="radio" name="indoor-outdoor"> Outdoor</label></div>
+		</div>
+		<!-- Responsively Style Checkboxes: You can use Bootstrap's col-xs-* classes on form elements, too! This way, our checkboxes will be evenly 
+			 spread out across the page, regardless of how wide the screen resolution is.-->
+		<div class="row">
+			<div class="col-xs-4"><label><input type="checkbox" name="personality"> Loving</label></div>
+			<div class="col-xs-4"><label><input type="checkbox" name="personality"> Lazy</label></div>
+			<div class="col-xs-4"><label><input type="checkbox" name="personality"> Crazy</label></div>
+		</div>
+		<!-- Style Text Inputs as Form Controls by adding class="form-control" -->
+	  <input type="text" class="form-control" placeholder="cat photo URL" required>
+	  <!-- Add paper plan icon in awesome font to submit button and style with CSS -->
+	  <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 </div>
