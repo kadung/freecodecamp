@@ -1,11 +1,13 @@
 
-<!-- Add bootstrap library -->
+<!-- Add Lobster font -->
 <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
 
+<!-- Add bootstrap library -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- Add Awesome Font: is a convenient library of icons. These icons are vector graphics, stored in the .svg file format
 	 These icons are treated just like fonts. You can specify their size using pixels, and they will assume the font size 
 	 of their parent HTML elements. -->
-<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
   .red-text {
@@ -34,37 +36,43 @@
 </style>
 
 <div class="container-fluid">
-	<!-- text-primary is pre-define blue color text -->
-	<h2 class="text-primary">CatPhotoApp</h2>
+	<!-- Bootstrap uses a responsive grid system which makes it easy to put elements into rows and specify each element's relative width -->
+	<!-- Note that the col-xs-* class is being used: xs means extra small (can change to anther format size as md, ... 
+			 and * is a number specifying how many columns wide the element should be
+			 See here for more detial https://v4-alpha.getbootstrap.com/layout/grid/ and http://i.imgur.com/FaYuui8.png -->
+	<div class="row">
+		<!-- As bootstrap define: maximum wide of a row is 12 collums -->
+		<div class="col-xs-8">
+			<!-- text-primary is pre-define blue color text -->
+			<h2 class="text-primary">CatPhotoApp</h2>
+		</div>
 
-	
-	<a href="#"><img class="img-responsive thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back. "></a>
+		<div class="col-xs-4">
+			<a href="#"><img class="img-responsive thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back. "></a>
+		</div>
+	</div>
 	
 	<!-- img-responsive from bootstrap lib provides the image with fitting the device screen resolution -->
 	<img src="https://bit.ly/fcc-running-cats" class="img-responsive" alt="Three kittens running towards the camera. ">
 	
-	<!-- Add button with bootstrap: class of btn are only as wide as the text that they contain -->
-	<button class="btn">Like</button>
-	
 	<!-- Bootstrap uses a responsive grid system which makes it easy to put elements into rows and specify each element's relative width -->
 	<div class="row">
-		<!-- Note that the col-xs-* class is being used: xs means extra small (can change to anther format size as md, ... 
-			 and * is a number specifying how many columns wide the element should be
-			 See here for more detial https://v4-alpha.getbootstrap.com/layout/grid/ and http://i.imgur.com/FaYuui8.png -->
+	<!-- <button class="btn">Like</button>  :Add button with bootstrap: class of btn are only as wide as the text that they contain -->
+		<!-- Each buttons has 4 collums -->
 		<div class="col-xs-4">
 			<!-- Add button with bootstrap: Note that these class is required class btn and btn-block
 			btn-block class stretch to fill your page's entire horizontal space and any elements following it will flow onto a "new line" below the block
 			btn-primary class is pre-define blue color button from bootstrap -->
 			<!-- Adding the Font Awesome classes to the i element to turn it into an icon --> 
-			<button class="btn btn-block btn-primary"><i class="fa fa-thumbs-up"></i>Submit</button>
+			<button class="btn btn-block btn-primary"><i class="fa fa-thumbs-up"></i> Like</button>
 		</div>
-		<div class="col-xs-4"
+		<div class="col-xs-4">
 			<!-- btn-info class is pre-define blue sky color button from bootstrap -->
-			<button class="btn btn-block btn-info"><i class="fa fa-info-circle"></i>Info</button>
+			<button class="btn btn-block btn-info"><i class="fa fa-info-circle"></i> Info</button>
 		</div>
 		<div class="col-xs-4">
 			<!-- btn-danger class is pre-define red color button from bootstrap -->
-			<button class="btn btn-block btn-danger"><i class="fa fa-info-circle"></i>Danger</button>
+			<button class="btn btn-block btn-danger"><i class="fa fa-trash"></i> Danger</button>
 		</div>
 	</div>
 	
@@ -89,8 +97,12 @@
 		<!-- Responsively Style Radio Buttons: You can use Bootstrap's col-xs-* classes on form elements, too! This way, our radio buttons will be 
 			 evenly spread out across the page, regardless of how wide the screen resolution is -->
 		<div class="row">
-			<div class="col-xs-6><label><input type="radio" name="indoor-outdoor"> Indoor</label></div>
-			<div class="col-xs-6><label><input type="radio" name="indoor-outdoor"> Outdoor</label></div>
+			<div class="col-xs-6">
+				<label><input type="radio" name="indoor-outdoor"> Indoor</label>
+			</div>
+			<div class="col-xs-6">
+				<label><input type="radio" name="indoor-outdoor"> Outdoor</label>
+			</div>
 		</div>
 		<!-- Responsively Style Checkboxes: You can use Bootstrap's col-xs-* classes on form elements, too! This way, our checkboxes will be evenly 
 			 spread out across the page, regardless of how wide the screen resolution is.-->
@@ -99,9 +111,13 @@
 			<div class="col-xs-4"><label><input type="checkbox" name="personality"> Lazy</label></div>
 			<div class="col-xs-4"><label><input type="checkbox" name="personality"> Crazy</label></div>
 		</div>
-		<!-- Style Text Inputs as Form Controls by adding class="form-control" -->
-	  <input type="text" class="form-control" placeholder="cat photo URL" required>
-	  <!-- Add paper plan icon in awesome font to submit button and style with CSS -->
-	  <button type="submit" class="btn btn-primary">Submit</button>
+		
+		<div>
+			<!-- Style Text Inputs as Form Controls by adding class="form-control" -->
+			<div class="col-xs-7"><input type="text" class="form-control" placeholder="cat photo URL" required></div>
+			<!-- Add paper plan icon in awesome font to submit button and style with CSS -->
+			<div class="col-xs-5"><button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Submit</button></div>
+		</div>
 	</form>
+		
 </div>
