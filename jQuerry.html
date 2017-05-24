@@ -1,6 +1,9 @@
 <head>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css"></script>
+	<!-- Add javascript lib use script tag -->
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<!-- Add CSS lib use link tag -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <script>
@@ -8,8 +11,26 @@
 	<!-- jQuery often selects an HTML element with a selector, then does something to that element -->
 	<!-- Wait for web rendering is conpleted before running the script inside -->
 	$(document).ready(function() {
-		<!-- Make all the button bounce -->
+		<!-- Target by element: Make all the button element bounce -->
+		<!-- addClass from jQuery allows you to add classes to elements --> 
+		<!-- animated bounce from animate.css -->
 		$("button").addClass("animated bounce");
+		
+		<!-- Target element by class: target your div elements with the class well by using the $(".well") selector. Note that, just like with CSS declarations, you type a . before the class's name. For example, you could make all the elements with the class text-primary shake by adding the following to your document ready function: $(".text-primary").addClass("animated shake"); -->
+		$(".well").addClass("animated shake");
+		
+		<!-- Target element by ID: just like with CSS declarations, you type a # before the id's name -->
+		$("#target3").addClass("animated fadeOut");
+		
+		<!-- Now you know three ways of targeting elements: by type: $("button"), by class: $(".btn"), and by id $("#target1") -->
+		<!-- In the same way you can add classes to an element with jQuery's addClass() function, you can remove them with jQuery's removeClass() function. -->
+		$("button").removeClass("btn-default");
+		
+		<!-- We can also change the CSS of an HTML element directly with jQuery. jQuery has a function called .css() that allows you to change the CSS of an element. This is slightly different from a normal CSS declaration, because the CSS property and its value are in quotes, and separated with a comma instead of a colon. -->
+		$("#target1").css("color", "red");
+		
+		<!-- You can also change the non-CSS properties of HTML elements with jQuery. For example, you can disable buttons. When you disable a button, it will become grayed-out and can no longer be clicked. jQuery has a function called .prop() that allows you to adjust the properties of elements. -->
+		$("#target2").prop("disable",true)
 	});
 </script>
 
