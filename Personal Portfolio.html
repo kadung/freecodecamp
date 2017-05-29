@@ -6,20 +6,20 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 </head>
 
 <script>
-	function myFunction() {
-		var x = document.getElementById("myTopnav");
-		if (x.className === "topnav") {
-			x.className += " responsive";
-		} else {
-			x.className = "topnav";
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "topnav") {
+				x.className += " responsive";
+			} else {
+				x.className = "topnav";
+			}
 		}
-	}
 </script>
 
-<!-- Custom CSS: no comment or it will not work ???? -->
 <style>
 	.topnav {
 		background-color: #333;
@@ -27,13 +27,17 @@
 	}
 	
 	.topnav a {
-		float: left;
+		float: right;
 		display: block;
 		color: #f2f2f2;
 		text-align: center;
 		padding: 14px 16px;
 		text-decoration: none;
 		font-size: 17px;
+	}
+	
+	.topnav a:nth-child(2) {
+		float:left;
 	}
 	
 	.topnav a:hover {
@@ -46,20 +50,16 @@
 	}
 	
 	@media screen and (max-width: 600px) {
-		.topnav a:not(:first-child) {display: none;}
+		.topnav a {display: none;}
 		.topnav a.icon {
-			float: right;
+			float: left;
 			display: block;
 		}
 	}
 	
 	@media screen and (max-width: 600px) {
 		.topnav.responsive {position: relative;}
-		.topnav.responsive a.icon {
-			position: absolute;
-			right: 0;
-			top: 0;
-		}
+		
 	
 	.topnav.responsive a {
 		float: none;
@@ -67,29 +67,21 @@
 		text-align: left;
 	}
 	
-	.topnav a.active {
-		background-color: green;
-		color: yellow;
-	}
-}
+	
 </style>
 
 
 <!-- Keep it at always on top of the page by navbar-fixed-top -->
-<div id="myTopnav" class="topnav navbar-fixed-top">
-	<a href="#dunn">Dunn Kieu</a>
+<div id="myTopnav" class="topnav">
+	<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+	<a href="#">Dũng Kiều</a>
 	<a href="#projiect">Projiect</a>
 	<a href="#about">About Me</a>
 	<a href="#contact">Contact Me</a>
-	<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 
-<div class="container-fluid">
-	<div>
-		<br>
-		<br>
-		<h3>THis is me</h3>
-	</div>
+<div style="background-image:url()">
+	
 </div>
 	
 <div id="footer">	
