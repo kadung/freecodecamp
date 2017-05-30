@@ -21,6 +21,17 @@
 </script>
 
 <style>
+	/*----- GRID -----*/
+	.round-border {
+		border-radius: 50%;
+	}
+	
+	#about {
+		min-height: 300px;
+	}
+	
+	
+	/*----- Top Navigator -----*/
 	.topnav {
 		background-color: #333;
 		overflow: hidden;
@@ -67,24 +78,37 @@
 		text-align: left;
 	}
 	
-	
 </style>
 
 
-<!-- Keep it at always on top of the page by navbar-fixed-top -->
-<div id="myTopnav" class="topnav">
-	<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-	<a href="#">Dũng Kiều</a>
-	<a href="#projiect">Projiect</a>
-	<a href="#about">About Me</a>
-	<a href="#contact">Contact Me</a>
-</div>
+<div style="background-color:gray">
+	<!-- Keep it at always on top of the page by navbar-fixed-top -->
+	<div id="myTopnav" class="topnav">
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+		<a href="#">Dũng Kiều</a>
+		<a href="#about">About Me</a>
+		<a href="#projiect">Projiect</a>
+		<a href="#contact">Contact Me</a>
+	</div>
 
-<div style="background-image:url()">
-	
+	<div class="container" id="about" style="background-image:url(https://cdn.theatlantic.com/assets/media/img/mt/2016/03/RTX283V4/lead_960.jpg?1457553386)">
+		<div class="rows">
+			<div class="col-xs-8 about-text" style="text-align:center">
+				<br>
+				<br>
+				<h2>Hello, I am Dũng Kiều Anh and I am on my web programing adventure at <a href="www.freecodecamp.com" style="color:blue">freecodecamp.com</a></h2>
+				<br>
+				<br>
+			</div>
+
+			<div class="col-xs-4">
+				<img class="img-responsive round-border" src="" >
+			</div>
+		</div>
+	</div>
 </div>
 	
 <div id="footer">	
 	<hr class="my-1">
-	<h5 class="text-center" style="color:black">Created with support from  <a href="https://www.freecodecamp.com" target="_blank"><span class="fa fa-free-code-camp"></span> FreeCodeCamp.com</a></h5>
+	<h5 class="text-center" style="color:black">Homework with  <a href="https://www.freecodecamp.com" target="_blank"><span class="fa fa-free-code-camp"></span> FreeCodeCamp.com</a></h5>
 </div>
