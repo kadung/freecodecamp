@@ -32,10 +32,29 @@
 		background-color: white;
 	}
 	
+	#portfolio {
+		min-height: 300px;
+	}
+	
+	input {
+		border: none;
+		background-color: transparent;
+	}
+	
+	h2 {
+		color:white;
+	}
+	
+	.hr2 {
+		border: solid;
+		border-width: 1px 0 0;
+		width: 50%;
+	}
+	
 	
 	/*----- Top Navigator -----*/
 	.topnav {
-		background-color: #333;
+		background-color: purple;
 		overflow: hidden;
 	}
 	
@@ -83,32 +102,38 @@
 </style>
 
 
-<div style="background-color:gray">
+<div style="background-color:black">
 	<!-- Keep it at always on top of the page by navbar-fixed-top -->
 	<div id="myTopnav" class="topnav">
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 		<a href="#">Dũng Kiều</a>
 		<a href="#about">About Me</a>
-		<a href="#projiect">Projiect</a>
+		<a href="#portfolio">Portfolio</a>
 		<a href="#contact">Contact Me</a>
 	</div>
 
-	<div class="container" id="about" style="background-color:blue">
+	<div class="container container-border" id="about" style="background-color:gray">
 		<div class="rows">
-			<div class="col-xs-8 about-text" style="text-align:center">
+			<div class="col-xs-8">
 				<br>
 				<br>
 				<h2>Hello, I am Dũng Kiều Anh and I am on my web programing adventure at <a href="www.freecodecamp.com" style="color:blue">freecodecamp.com</a></h2>
 				<br>
 				<h2>What I will learn:</h2>
 				<hr class="my-1">
+				<div class="row">
+					<img src="https://www.w3.org/html/logo/downloads/HTML5_Logo_128.png">
+					<img src="http://www.myiconfinder.com/uploads/iconsets/128-128-8b61de4c84033266e15317a6eb9fda2d-css3.png">
+					<img src="http://laminds.com/assets/images/javascript-small.png">
+					<img src="http://pixxstudios.com/wp-content/uploads/2014/11/1421797567_nodejs-128.png">
+				</div>
 				<br>
 			</div>
 
 			<div class="col-xs-4">
 				<br>
 				<br>
-				<img class="img-responsive img-circle" src="http://www.desktopimages.org/pictures/2014/0413/1/green-final-fantasy-cactuar-wallpaper-443580.jpg" >
+				<img class="img-responsive img-circle center-block" src="https://s-media-cache-ak0.pinimg.com/736x/3c/b2/cc/3cb2cc1b2c0762605830aabe13ae5a90.jpg">
 				<br>
 				<br>
 			</div>
@@ -116,26 +141,65 @@
 	</div>
 	
 	<!-- Projiect Image Gallery: https://www.w3schools.com/css/css3_images.asp -->
-	<div id="project" class="container">
-	
+	<div id="portfolio" class="container container-border" style="background-color:white">
+		<br>
+		<br>
+		<h2 class="text-center" style="color:black"> Portfolio </h2>
+		<hr class="hr2">
+		<br>
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="thumbnail">
+					<a target="_blank" href="#">
+						<img src="http://thumb.ibb.co/kNM5Vv/aab.png" alt="Tributed Page">
+					</a>
+					<div class="caption text-center">Tributed Page</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	<!-- Social button: https://lipis.github.io/bootstrap-social/ -->
-	<div id="contact" class="container">
-		<a class="btn btn-block btn-lg btn-social btn-linkedin">
-			<span class="fa fa-linkedin"></span> Sign in with Linkedin
-		</a>
-		<a class="btn btn-block btn-lg btn-social btn-github">
-			<span class="fa fa-github"></span> Sign in with Github
-		</a>
-		<a class="btn btn-block btn-lg btn-social btn-facebook">
-			<span class="fa fa-facebook"></span> Sign in with Facebook
-		</a>
+	<div id="contact" class="container" style="background-color:grey">
+		<br>
+		<br>
+		<h2 class="text-center">Contact Me</h2>
+		<hr style="width:50%">
+		<br>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="col-xs-10 col-xs-offset-1">
+					<form>
+						<div class="input-lg">
+							<input type="text" class="form-control" placeholder="Name"> <br>
+							<input type="text" class="form-control" placeholder="Email"> <br>
+							<input type="text" class="form-control" placeholder="Phone number"> <br>
+							<input type="text" class="form-control" placeholder="Message"> <br>
+							<button class="btn btn-center">Send</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="col-xs-4 col-xs-offset-1">
+				<h3 style="color:white">You can also contact me via social website as below:</h3>
+				<a class="btn btn-block btn-lg btn-social btn-linkedin">
+					<span class="fa fa-linkedin"></span> Contact via Linkedin
+				</a>
+				<a class="btn btn-block btn-lg btn-social btn-github">
+					<span class="fa fa-github"></span> Contact via Github
+				</a>
+				<a class="btn btn-block btn-lg btn-social btn-facebook">
+					<span class="fa fa-facebook"></span> Contact via Facebook
+				</a>
+				<br>
+			</div>
+		</div>
+		<br>
+		<br>
 	</div>
 
-</div>
-	
-<div id="footer">	
 	<hr class="my-1">
-	<h5 class="text-center" style="color:black">Homework with  <a href="https://www.freecodecamp.com" target="_blank"><span class="fa fa-free-code-camp"></span> FreeCodeCamp.com</a></h5>
+	<h5 class="text-center" style="color:white">Homework with  <a href="https://www.freecodecamp.com" target="_blank"><span class="fa fa-free-code-camp"></span> FreeCodeCamp.com</a></h5>
+	<br>
 </div>
