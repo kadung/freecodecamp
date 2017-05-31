@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
 	
 </head>
 
@@ -22,12 +23,13 @@
 
 <style>
 	/*----- GRID -----*/
-	.round-border {
-		border-radius: 50%;
-	}
-	
 	#about {
 		min-height: 300px;
+	}
+	
+	#contact {
+		min-height: 300px;
+		background-color: white;
 	}
 	
 	
@@ -91,21 +93,46 @@
 		<a href="#contact">Contact Me</a>
 	</div>
 
-	<div class="container" id="about" style="background-image:url(https://cdn.theatlantic.com/assets/media/img/mt/2016/03/RTX283V4/lead_960.jpg?1457553386)">
+	<div class="container" id="about" style="background-color:blue">
 		<div class="rows">
 			<div class="col-xs-8 about-text" style="text-align:center">
 				<br>
 				<br>
 				<h2>Hello, I am Dũng Kiều Anh and I am on my web programing adventure at <a href="www.freecodecamp.com" style="color:blue">freecodecamp.com</a></h2>
 				<br>
+				<h2>What I will learn:</h2>
+				<hr class="my-1">
 				<br>
 			</div>
 
 			<div class="col-xs-4">
-				<img class="img-responsive round-border" src="" >
+				<br>
+				<br>
+				<img class="img-responsive img-circle" src="http://www.desktopimages.org/pictures/2014/0413/1/green-final-fantasy-cactuar-wallpaper-443580.jpg" >
+				<br>
+				<br>
 			</div>
 		</div>
 	</div>
+	
+	<!-- Projiect Image Gallery: https://www.w3schools.com/css/css3_images.asp -->
+	<div id="project" class="container">
+	
+	</div>
+	
+	<!-- Social button: https://lipis.github.io/bootstrap-social/ -->
+	<div id="contact" class="container">
+		<a class="btn btn-block btn-lg btn-social btn-linkedin">
+			<span class="fa fa-linkedin"></span> Sign in with Linkedin
+		</a>
+		<a class="btn btn-block btn-lg btn-social btn-github">
+			<span class="fa fa-github"></span> Sign in with Github
+		</a>
+		<a class="btn btn-block btn-lg btn-social btn-facebook">
+			<span class="fa fa-facebook"></span> Sign in with Facebook
+		</a>
+	</div>
+
 </div>
 	
 <div id="footer">	
