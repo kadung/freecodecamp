@@ -59,7 +59,7 @@
 	}
 	
 	.topnav a {
-		float: right;
+		float: left;
 		display: block;
 		color: #f2f2f2;
 		text-align: center;
@@ -68,8 +68,8 @@
 		font-size: 17px;
 	}
 	
-	.topnav a:nth-child(2) {
-		float:left;
+	.floatright {
+		float: right;
 	}
 	
 	.topnav a:hover {
@@ -99,17 +99,25 @@
 		text-align: left;
 	}
 	
+	.floatright {
+		float: none;
+	}
+		
 </style>
 
 
 <div style="background-color:black">
 	<!-- Keep it at always on top of the page by navbar-fixed-top -->
-	<div id="myTopnav" class="topnav">
+	<div id="myTopnav" class="topnav navbar-fixed-top">
+		<div="row">
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 		<a href="#">Dũng Kiều</a>
+		<div class="floatright">
 		<a href="#about">About Me</a>
 		<a href="#portfolio">Portfolio</a>
 		<a href="#contact">Contact Me</a>
+		</div>
+		</div>
 	</div>
 
 	<div class="container container-border" id="about" style="background-color:gray">
@@ -133,6 +141,7 @@
 			<div class="col-xs-4">
 				<br>
 				<br>
+				<br>
 				<img class="img-responsive img-circle center-block" src="https://s-media-cache-ak0.pinimg.com/736x/3c/b2/cc/3cb2cc1b2c0762605830aabe13ae5a90.jpg">
 				<br>
 				<br>
@@ -151,9 +160,27 @@
 			<div class="col-xs-4">
 				<div class="thumbnail">
 					<a target="_blank" href="#">
-						<img src="http://thumb.ibb.co/kNM5Vv/aab.png" alt="Tributed Page">
+						<img src="http://thumb.ibb.co/kNM5Vv/aab.png" style="width:100%" alt="Tributed Page">
 					</a>
 					<div class="caption text-center">Tributed Page</div>
+				</div>
+			</div>
+			
+			<div class="col-xs-4">
+				<div class="thumbnail">
+					<a target="_blank" href="#">
+						<img src="https://archive.org/services/img/ComingSoon2" style="width:100%" alt="Comming Soon">
+					</a>
+					<div class="caption text-center">Another one</div>
+				</div>
+			</div>
+			
+			<div class="col-xs-4">
+				<div class="thumbnail">
+					<a target="_blank" href="#">
+						<img src="https://archive.org/services/img/ComingSoon2" style="width:100%" alt="Comming Soon">
+					</a>
+					<div class="caption text-center">Another one</div>
 				</div>
 			</div>
 		</div>
