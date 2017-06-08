@@ -96,30 +96,65 @@
 	The accumulator is like a total that reduce keeps track of after each operation. The current value is just the next element in the array you're iterating through.
 	reduce has an optional second argument which can be used to set the initial value of the accumulator. If no initial value is specified it will be the first array element and currentVal will start with the second array element.
 */
-	var singleVal = array.reduce(function(previousVal, currentVal) {
-		return previousVal - currentVal;
-	}, 0);
+	var array = [4,5,6,7,8];
+	
+	// reduce being used to subtract all the values of an array: singleVal = -4 -5 -6 -7 -8  = -30
+	var singleVal = array.reduce(function(previousVal, currentVal) {	// previousVal, currentVal: function template agrument, so we can use any name
+		return previousVal - currentVal;								// previousVal means the value return in this and currentVal means number in array
+	}, 0);																// 0 means, first previousVal
+
+	// reduce being used to sum all the values of an array with inital value is 10: singleVal = 10 + 4 +5 +6 +7 +8 = 40
+	var finalVal = array.reduce(function(x,y) {
+		return x + y;
+	}, 10);
+	
+	
+/*
+	- Filter Arrays with filter: The filter method is used to iterate through an array and filter out elements where a given condition is not true.
+	
+	Any array element for which the callback returns true will be kept and elements that return false will be filtered out.
+*/
+	var oldArray = [1,2,3,4,5,6,7,8,9,10];
+	var newArray = oldArray.filter(function(val){return val<6;});		// filtered out all values from the array that are greater than 5
 
 /*
-
+	- Sort Arrays with sort :  method sort to easily sort the values in an array alphabetically or numerically.
+	
+	sort can be passed a compare function as a callback. The compare function should return a negative number if a should be before b, a positive number if a should be after b, or 0 if they are equal.
+	
+	If no compare (callback) function is passed in, it will convert the values to strings and sort alphabetically.
 */
-
+	var array = [1, 12, 21, 2];
+	array.sort(function(a,b){ return a - b;});		// smallest to largest number
+	array.sort(function(a,b){ return b - a;});		// largest to smallest number
 
 /*
-
+	Reverse Arrays with reverse
 */
-
+	var array = [1,2,3,4,5,6,7];
+	var newArray = [];
+	newArray = array.reverse();			// newArray = [7,6,5,4,3,2,1]
 
 /*
-
+	Concatenate Arrays with concat: concat can be used to merge the contents of two arrays into one.
+	concat takes an array as an argument and returns a new array with the elements of this array concatenated onto the end.
 */
+	var oldArray = [1,2,3];
+	var newArray = [];
+	var concatMe = [4,5,6];
+	newArray = oldArray.concat(concatMe); 		// newArray = [1,2,3,4,5,6];
 
-
+/*	
+	Split Strings with split: split method to split a string into an array.
+	split uses the argument you pass in as a delimiter to determine which points the string should be split at.
+*/
+	var string = "Split me into an array";
+	var array = [];
+	array = string.split(' ');
+	
 /*
-
-*/
-
-
-/*
-
-*/
+	Join Strings with join: join method to join each element of an array into a string separated by whatever delimiter you provide as an argument.
+*/		
+	var veggies = ["Celery", "Radish", "Carrot", "Potato"];
+	var salad = veggies.join(" and ");
+	console.log(salad); // "Celery and Radish and Carrot and Potato" 
