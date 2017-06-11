@@ -107,6 +107,7 @@
 	.pop() is used to "pop" a value off of the end of an array. We can store this "popped off" value by assigning it to a variable.
 	.shift() removes the first element instead of the last. We can store this "popped off" value by assigning it to a variable.
 	.unshift() works exactly like .push(), but instead of adding the element at the end of the array
+	.splice(x,y) Remove y elements of an array at an index x
 */
 	var arr = [1,2,3];
 	
@@ -114,6 +115,7 @@
 	var removeLastValue = arr.pop();	// equal 4 and arr = [1,2,3]
 	var removeFirstValue = arr.shift();	// equal 1 and arr = [2,3]
 	arr.unshift(10);					// arr = [10,2,3]
+	arr.splice(i, 1);					// Remove an element of an array at an index i
 	
 /*
 	Global Scope and Functions: In JavaScript, we can divide up our code into reusable parts called functions. Scope refers to the visibility of variables. Variables which are defined outside of a function block have Global scope. This means, they can be seen everywhere in your JavaScript code.

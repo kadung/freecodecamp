@@ -1,0 +1,101 @@
+
+
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- In this section, we'll learn how to get data from APIs. APIs - or Application Programming Interfaces - are tools that computers
+	 use to communicate with one another. We'll also learn how to update HTML with the data we get from these APIs using a technology 
+	 called Ajax. -->
+	 
+	 
+<script>
+	<!-- $(document).ready() :This function runs such that all of the code inside of it executes only once our page has finished loading -->
+	$(document).ready(function() {
+	<!-- Click event handler -->
+	$("#getMessage").on("click", function(){
+		<!-- User clicks the "Get Message" button, we change the text of the element with the class message to say "Here is the message" -->
+		<!-- $(".message").html("Here is the message"); -->
+		
+		<!-- User clicks the "Get Message" button, we change the text of the element with the class message to print API response message
+		<!-- $.getJSON("/json/cats.json", function(json){		-->
+		<!-- 	$(".message").html(JSON.stringify(json));		-->
+		<!-- });												-->
+		
+		
+		<!-- Convert JSON data to HTML -->
+		json.forEach(function(val) {
+		  var keys = Object.keys(val);
+		  html += "<div class = 'cat'>";
+		  keys.forEach(function(key) {
+			html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
+		  });
+		  html += "</div><br>";
+		});
+		
+		
+		<!-- Render Images from Data Sources -->
+		var html = "";
+		json.forEach(function(val) {
+			html += "<div class = 'cat'>";
+			html += "<img src = '" + val.imageLink + "' " + "alt = '" + val.altText + "'>";
+			html += "</div>";
+		});
+
+		$(".message").html(html);
+		
+		
+		<!-- Prefilter JSON  -->
+		var html = "";
+        json = json.filter(function(val) {
+			return (val.id !== 1);
+        });
+
+        json.forEach(function(val) {
+			html += "<div class = 'cat'>"
+			html += "<img src = '" + val.imageLink + "' " + "alt='" + val.altText + "'>"
+			html += "</div>"
+        });
+		
+		$(".message").html(html);
+		
+		
+		<!-- Get Geolocation Data -->
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position){
+				$("#data").html("latidue: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
+			});
+		}
+
+	});
+  });
+</script>
+
+
+<div class="container-fluid">
+  <div class = "row text-center">
+    <h2>Cat Photo Finder</h2>
+  </div>
+  
+  <div class = "row text-center">
+    <div class = "col-xs-12 well message">
+      The message will go here
+    </div>
+  </div>
+  
+	<div class = "row text-center">
+	  <div class = "col-xs-12 well" id = "data">
+	  <h4>You are here:</h4>
+	  </div>
+	</div>
+	
+  <div class = "row text-center">
+    <div class = "col-xs-12">
+      <button id = "getMessage" class = "btn btn-primary">
+        Get Message
+      </button>
+    </div>
+  </div>
+  
+</div>
+
