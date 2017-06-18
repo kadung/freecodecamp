@@ -1,0 +1,91 @@
+Source: how-to-npm
+====================================================================================================================================
+- One of the most important things that npm does is install packages. However, in order to be a good workshop program, we don't want
+to litter files all over your computer, so before going any further, let's set up a development environment.
+	
+	npm init		// Move to destination folder and run this command to create a dev environment
+
+	
+- npm is best when you can be a part of it.  That starts with creating an account.
+	
+	npm whoami							// To see who you're logged in as
+	npm adduser							// To creare a user
+	
+	
+- npm helps you build projects, but for npm to be able to do that, you need to tell npm a little bit about your project. You can tell
+npm about your project in a file called package.json.
+	
+	npm init --scope=<username>			// Eeplace <username> with your user, this will create a package.json file
+	git init							// Create a git repo for this folder after entering git address in npm init
+	
+	
+- The first thing that most people do with npm is install a dependency. Dependencies are fetched from the registry, and unpacked in 
+the `node_modules` folder.
+	
+	npm i <module_name>					// Intall a new module
+	
+- npm isn't just for installing stuff.  It also shows you what you have installed (your dependencies).
+	
+	npm ls								// List all installed module
+	
+	
+- Now you've installed something, and used `npm ls` to show what's going on. If you look at the package.json file:
+       "scripts": {
+         "test": "echo \"Error: no test specified\" && exit 1"
+       },
+npm can be used as a task runner with its "scripts" property.  Almost every module and project will have a test script that runs to make
+sure everything is good.  In order to help remind you to do this, npm puts an "always failing" test in there by default. 
+	
+	npm test							// If you wanted to actually run any tests you'd written in the "test" script
+
+
+- We should add a README.md in our package folder before sending it to the world.
+
+
+- It's very easy for all npm users to publish their modules and share them with the world.
+	
+	npm publish							// Packages get into the registry
+	npm view <package_name>				// view package details, to see what you just published, and to check if a name is already taken
+
+
+- Every package in npm has a version number associated with it. As you release updates to your package, these updates get an updated
+version number. Version numbers in npm follow a standard called "SemVer".  This stands for "Semantic Version". The tl;dr version is that 
+for a version like this:
+       1.2.3
+       ^ ^ ^
+       | | `-- Patch version. Update for every change.
+       | `---- Minor version. Update for API additions.
+       `------ Major version. Update for breaking API changes.
+	
+	npm version							// update your package.json file for you, and also commit the change to git 
+
+Or, if you don't trust the machines, you can open up your package.json file by hand, and put some new numbers in the "version" field.
+The npm registry won't let you publish a new release of your package without updating the version number!  Ever!  So, get used to the idea 
+of bumping the version whenever you want to publish, even if the change is really minor.
+
+
+- Every published package on npm has a `dist-tags` entry on it which maps strings like "latest" to version numbers like "1.2.48".
+By default, the "latest" version is what gets installed.  When you publish, the version that you publish gets tagged as "latest".  
+This is generally great, because most of the time you publish things when you're ready for users to use them. However, if you need 
+to publish something, and *not* make it the default version of a package (for example, if it's a security release for a legacy version,
+or something), then you can manually manage these distribution tags with the `dist-tag` function.
+	
+	npm dist-tag add <pkg>@<version> [<tag>]		// add a new tag. EX: npm dist-tag add learnode@1.0.1 beta
+	npm dist-tag ls [<pkg>]							// list all tags. EX: npm dist-tag ls learnode
+
+
+- Let's clean things up. The only dist-tag you CAN'T ever remove is "latest". That's because every package installs its "latest" tag by 
+default, so that tag has some special semantics. You CAN point "latest" to a different version, or delete other tags.
+	
+	npm dist-tag rm <pkg> <tag>						// delete a tag in a package. EX: npm dist-tag rm learnode beta
+
+
+- Remove intalled package/dependencies:
+	
+	npm rm --save						// Remove all the deps!  But, make sure that you don't keep depending on them.
+										// --save means auto update the package.json file
+
+
+
+
+
