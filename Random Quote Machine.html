@@ -11,12 +11,32 @@
 </head>
 
 
-<script>
-// Use JSONP
+<script type="text/javascript">
+// To access 3rd API (cross domain access), we can use CORS or JSONP. Recomendation: webserver should support these function first
+
 	$(document).ready(function() {
+		var qouteAPI = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=";
+		
+		$.getJSON(qouteAPI, function (data) {
+			$("#quote-text").html(data[0].content);
+			$("#author-text").html(data[0].title);
+			$.ajaxSetup({ cache: false});
+			$("#twitter-button").attr("href","https://twitter.com/intent/tweet?text=" + data[0].content + " - " + data[0].title);
+			console.log(data[0]);
+			var text = data[0].content.text();
+			console.log(text);
+			
+		});
+	
 		$("#button1").on("click", function () {
-			$.getJSON("https://talaikis.com/api/quotes/random/", function(json) {
-				$(".quote").html(JSON.stringify(json));
+			
+			$.getJSON(qouteAPI, function (data) {
+				$("#quote-text").html(data[0].content);
+				$("#author-text").html(data[0].title);
+				$.ajaxSetup({ cache: false});
+				
+				
+				$("#twitter-button").attr("href","https://twitter.com/intent/tweet?text=" + data[0].content + " - " + data[0].title);
 			});
 		});
 	});
@@ -34,12 +54,15 @@
 <div style="background-color:black">
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3  well margin-up">
-        <h1 class="text-center quote" id="quote-text">Quote location</h1>
-        <h4 class="text-right" id="author-text">Author</h4>
+        <h1 class="text-center quote" id="quote-text"></h1>
+        <h4 class="text-right" id="author-text"></h4>
         
+		<!-- Social button: https://lipis.github.io/bootstrap-social/ -->
         <div class="row">
           <div class="col-xs-6">
-            <p>For share button</p>
+			<a class="btn btn-social-icon btn-twitter" href="https://twitter.com/intent/tweet?text=Hello%20world" target="_blank" id="twitter-button">
+				<span class="fa fa-twitter"></span> 
+			</a>
           </div>
           
           <div class="col-xs-6">
