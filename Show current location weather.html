@@ -1,6 +1,6 @@
 
 <head>
-	<title>My Random Quote Machine</title>
+	<title>Weather App</title>
 	<meta charset="utf-8">
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
@@ -14,7 +14,7 @@
 	
 
 	$(document).ready(function() {
-		
+		var x= 123;
 		function getWeather() {
 			if (navigator.geolocation) {										// check if browser support geo
 				navigator.geolocation.getCurrentPosition(function (data) {		// if yes get the location
@@ -23,6 +23,7 @@
 					
 					showCityName(latitude, longitude);
 					getWeatherData(latitude, longitude);
+					
 				});			
 			} else {
 				console.log("Geolocation is not supported by this browser.");
@@ -46,46 +47,26 @@
 		// https://darksky.net/dev
 		// Your Secret Key:  40010c1cd4226676466f1d8c8173ae12
 		function getWeatherData(x, y) {
-			var darkskyAPI = "https://api.darksky.net/forecast/40010c1cd4226676466f1d8c8173ae12/" + x + "," + y;
+			var darkskyAPI = "https://crossorigin.me/https://api.darksky.net/forecast/40010c1cd4226676466f1d8c8173ae12/" + x + "," + y + "?exclude=minutely,hourly,daily,flags";
 			$.ajax ({
 				url: darkskyAPI,
 				success: function (data) {
-					console.log(data);
+					$("#tempDisplay").html(data.currently.apparentTemperature + " &deg;F");
 				}
 			});
 		}
-		
 		getWeather();
-	});
-
-	
-	/*		
-		// Random background-color
-		function ran_col() { //function name
-                var color = '#'; // hexadecimal starting symbol
-                var letters = ['000000','FF0000','00FF00','0000FF','FFFF00','00FFFF','FF00FF','C0C0C0']; //Set your colors here
-                color += letters[Math.floor(Math.random() * letters.length)];
-                document.getElementById('bodyss').style.background = color; // Setting the random color on your div element.
-            }
-			
-		// Get new qoute when click button
-		$("#button1").on("click", function () {
-			$.ajax ({
-			url: qouteAPI,
-			success: function (data) {
-				var post = data.shift(); // The data is an array of posts. Grab the first one.
-				$("#quote-text").html(post.content);
-				$("#author-text").html(post.title);
-				
-				$("#twitter-button").attr("href","https://twitter.com/intent/tweet?text=" + $("#quote-text").text() + " - " + $("#author-text").text());
-				
-				$(".body").attr("style", ran_col());
-				},
-			cache: false
-			});
+		
+		
+		$("#F2C").click(function() {
+			if (this.checked) {
+				console.log(x);
+			}
+			else {
+				console.log("unchecked");
+			}
 		});
 	});
-*/
 </script>
 
 <style>
@@ -104,14 +85,14 @@
 	</div>
 	
 	<!-- Display weather -->	
-	<div>
-		
-	</div>
-	
-	<!-- Switch between C and F -->	
-	<div>
-	
-	
+	<div class="text-center">
+		<h1> Animated weather icon </br> </h1>
+		<div class="row">
+			<h1> Temperature is </h1>
+			<h1 id="tempDisplay"> caculated now </h1>
+		</div>
+		<!-- Switch between C and F -->	
+		<label><input type="checkbox" id="F2C">  I want Celcius</label>
 	</div>
 </body>
  
