@@ -1,0 +1,110 @@
+
+<head>
+	<title>My Random Quote Machine</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+
+<script type="text/javascript">
+// To access 3rd API (cross domain access), we can use CORS or JSONP. Recomendation: webserver should support these function first
+// IE support: https://cypressnorth.com/programming/cross-domain-ajax-request-with-json-response-for-iefirefoxchrome-safari-jquery/
+	
+
+	$(document).ready(function() {
+		
+		function getWeather() {
+			if (navigator.geolocation) {										// check if browser support geo
+				navigator.geolocation.getCurrentPosition(function (data) {		// if yes get the location
+					var latitude = data.coords.latitude;						// extract latitude from object
+					var longitude = data.coords.longitude;						// extract longitude from object
+					
+					showCityName(latitude, longitude);
+					
+				});			
+			} else {
+				console.log("Geolocation is not supported by this browser.");
+			}
+		}
+		
+		// OpenStreetMap: reserved GEO location
+		// http://wiki.openstreetmap.org/wiki/Donations
+		function showCityName(x, y) {
+			var getCityAPI = "http://nominatim.openstreetmap.org/reverse?format=json&lat=" + x + "&lon=" + y;
+			$.ajax ({
+			url: getCityAPI,
+			success: function (data) {
+				$("#yourLocation").html("Your location: " + data.address.city + ", " + data.address.country);
+				},
+			cache: false
+			});
+			
+		}
+		
+		// Client ID (Consumer Key)
+		// dj0yJmk9dTZVSXNpYUl3M2o2JmQ9WVdrOVIwUkJPV1ZvTkdVbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1iNQ--
+		// Client Secret (Consumer Secret)
+		// 3e3f147ec9d31b7c92be7e104522709f1f2a0aa6
+		
+		getWeather();
+	});
+
+	
+	/*		
+		// Random background-color
+		function ran_col() { //function name
+                var color = '#'; // hexadecimal starting symbol
+                var letters = ['000000','FF0000','00FF00','0000FF','FFFF00','00FFFF','FF00FF','C0C0C0']; //Set your colors here
+                color += letters[Math.floor(Math.random() * letters.length)];
+                document.getElementById('bodyss').style.background = color; // Setting the random color on your div element.
+            }
+			
+		// Get new qoute when click button
+		$("#button1").on("click", function () {
+			$.ajax ({
+			url: qouteAPI,
+			success: function (data) {
+				var post = data.shift(); // The data is an array of posts. Grab the first one.
+				$("#quote-text").html(post.content);
+				$("#author-text").html(post.title);
+				
+				$("#twitter-button").attr("href","https://twitter.com/intent/tweet?text=" + $("#quote-text").text() + " - " + $("#author-text").text());
+				
+				$(".body").attr("style", ran_col());
+				},
+			cache: false
+			});
+		});
+	});
+*/
+</script>
+
+<style>
+	#header {
+		background-color: #007ec3;
+		color: white;
+	}
+</style>
+
+
+<body>
+	<!-- Animated weather icon: https://codepen.io/joshbader/full/EjXgqr/ -->
+	<div class="container-fluid text-center" id="header">
+		<h1>My Weather App</h1>
+		<h4 id="yourLocation"> <br> </h4>
+	</div>
+	
+	<!-- Display weather -->	
+	<div>
+		
+	</div>
+	
+	<!-- Switch between C and F -->	
+	<div>
+	
+	
+	</div>
+</body>
+ 
