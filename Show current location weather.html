@@ -22,7 +22,7 @@
 					var longitude = data.coords.longitude;						// extract longitude from object
 					
 					showCityName(latitude, longitude);
-					
+					getWeatherData(latitude, longitude);
 				});			
 			} else {
 				console.log("Geolocation is not supported by this browser.");
@@ -34,19 +34,26 @@
 		function showCityName(x, y) {
 			var getCityAPI = "http://nominatim.openstreetmap.org/reverse?format=json&lat=" + x + "&lon=" + y;
 			$.ajax ({
-			url: getCityAPI,
-			success: function (data) {
-				$("#yourLocation").html("Your location: " + data.address.city + ", " + data.address.country);
-				},
-			cache: false
+				url: getCityAPI,
+				success: function (data) {
+					$("#yourLocation").html("Your location: " + data.address.city + ", " + data.address.country);
+					},
+				cache: false
 			});
 			
 		}
 		
-		// Client ID (Consumer Key)
-		// dj0yJmk9dTZVSXNpYUl3M2o2JmQ9WVdrOVIwUkJPV1ZvTkdVbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1iNQ--
-		// Client Secret (Consumer Secret)
-		// 3e3f147ec9d31b7c92be7e104522709f1f2a0aa6
+		// https://darksky.net/dev
+		// Your Secret Key:  40010c1cd4226676466f1d8c8173ae12
+		function getWeatherData(x, y) {
+			var darkskyAPI = "https://api.darksky.net/forecast/40010c1cd4226676466f1d8c8173ae12/" + x + "," + y;
+			$.ajax ({
+				url: darkskyAPI,
+				success: function (data) {
+					console.log(data);
+				}
+			});
+		}
 		
 		getWeather();
 	});
