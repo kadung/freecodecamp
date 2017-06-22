@@ -1,0 +1,77 @@
+
+<head>
+	<title>Wikipedia Viewer</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css">
+	
+</head>
+
+
+<script>
+// To access 3rd API (cross domain access), we can use CORS or JSONP. Recomendation: webserver should support these function first
+// IE support: https://cypressnorth.com/programming/cross-domain-ajax-request-with-json-response-for-iefirefoxchrome-safari-jquery/
+	
+	$(document).ready(function() {
+		
+	});
+</script>
+
+<style>
+	#header {
+		background-color: #007ec3;
+		color: white;
+	}
+	
+	.centered {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		/* bring your own prefixes */
+		transform: translate(-50%, -50%);
+	}
+	
+	input[type=text] {
+		width: 180px;
+		box-sizing: border-box;
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		font-size: 16px;
+		background-color: white;
+		background-image: url('http://www.metoffice.gov.uk/webfiles/1497862815576/images/icons/warnings/search_icon.svg');
+		background-position: 10px 10px; 
+		background-repeat: no-repeat;
+		padding: 12px 20px 12px 40px;
+		-webkit-transition: width 0.4s ease-in-out;
+		transition: width 0.4s ease-in-out;
+	}
+
+	/* When the input field gets focus, change its width to 100% */
+	input[type=text]:focus {
+		width: 100%;
+		
+	}
+	
+</style>	
+	
+<body>
+	<!-- Header -->
+	<div class="container-fluid text-center" id="header">
+		<br>
+		<h1>Wikipedia Viewer App</h1>
+		<br>
+	</div>
+	
+	<!-- Display Wikipedia -->	
+	<div class="text-center centered">
+		<h1><a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Click here for random article</a> or search for specific article</h1>
+		
+		<!-- Search button -->
+		<input type="text" name="search" placeholder="Searching..."> 
+		
+		
+	</div>
+</body>
+ 

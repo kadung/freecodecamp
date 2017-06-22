@@ -12,33 +12,45 @@
 // To access 3rd API (cross domain access), we can use CORS or JSONP. Recomendation: webserver should support these function first
 // IE support: https://cypressnorth.com/programming/cross-domain-ajax-request-with-json-response-for-iefirefoxchrome-safari-jquery/
 	
-
 	$(document).ready(function() {
-		var x= 123;
-		function getWeather() {
-			if (navigator.geolocation) {										// check if browser support geo
-				navigator.geolocation.getCurrentPosition(function (data) {		// if yes get the location
-					var latitude = data.coords.latitude;						// extract latitude from object
-					var longitude = data.coords.longitude;						// extract longitude from object
-					
-					showCityName(latitude, longitude);
-					getWeatherData(latitude, longitude);
-					
-				});			
-			} else {
-				console.log("Geolocation is not supported by this browser.");
-			}
+		if (navigator.geolocation) {										// check if browser support geo
+			navigator.geolocation.getCurrentPosition(function (data) {		// if yes get the location
+			latitude = data.coords.latitude;								// extract latitude from object
+			longitude = data.coords.longitude;								// extract longitude from object
+			
+			showCityName(latitude, longitude);
+			getWeatherData(latitude, longitude);
+			
+			});			
+		} else {
+			console.log("Geolocation is not supported by this browser.");
 		}
+		
+		// Switch from F to C or vice verce
+		$("#F2C").click(function() {
+			if (this.checked) {
+				var x = $("#tempDisplay").text().replace(/ °F/,'');
+				var y = ((x - 32) *5 /9).toFixed(2);
+				$("#tempDisplay").html(y + " &deg;C");
+			}
+			else {
+				var x = $("#tempDisplay").text().replace(/ °C/,'');
+				var y = (x * 9 / 5 + 32).toFixed(2);
+				$("#tempDisplay").html(y + " &deg;F");
+			}
+		});
+		
 		
 		// OpenStreetMap: reserved GEO location
 		// http://wiki.openstreetmap.org/wiki/Donations
 		function showCityName(x, y) {
+			
 			var getCityAPI = "http://nominatim.openstreetmap.org/reverse?format=json&lat=" + x + "&lon=" + y;
 			$.ajax ({
 				url: getCityAPI,
 				success: function (data) {
 					$("#yourLocation").html("Your location: " + data.address.city + ", " + data.address.country);
-					},
+				},
 				cache: false
 			});
 			
@@ -52,20 +64,23 @@
 				url: darkskyAPI,
 				success: function (data) {
 					$("#tempDisplay").html(data.currently.apparentTemperature + " &deg;F");
+					console.log(data);
+					if (data.currently.icon == "rain") {
+						$('body').css({'background-image':'url(https://www.caminodesantiago.me/wp-content/uploads/rain1.jpg)', 'color':'blue'});
+					}
+					else if (data.currently.icon == "cloudy") {
+						$('body').css('background-image','url(https://static.pexels.com/photos/928/sky-clouds-cloudy-blue.jpg)');
+					}
+					else if (data.currently.icon == "wind") {
+						$('body').css('background-image','url(http://weknowyourdreams.com/images/wind/wind-04.jpg)');
+					}
+					else {
+						$('body').css('background-image','url()');
+					}
 				}
 			});
 		}
-		getWeather();
-		
-		
-		$("#F2C").click(function() {
-			if (this.checked) {
-				console.log(x);
-			}
-			else {
-				console.log("unchecked");
-			}
-		});
+	
 	});
 </script>
 
@@ -74,11 +89,19 @@
 		background-color: #007ec3;
 		color: white;
 	}
+	
+	body {
+		background-image: url();
+	}
+	
+	#tempDisplay {
+		font-size: 100px;
+	}
 </style>
 
 
 <body>
-	<!-- Animated weather icon: https://codepen.io/joshbader/full/EjXgqr/ -->
+	<!-- Header -->
 	<div class="container-fluid text-center" id="header">
 		<h1>My Weather App</h1>
 		<h4 id="yourLocation"> <br> </h4>
@@ -86,11 +109,12 @@
 	
 	<!-- Display weather -->	
 	<div class="text-center">
-		<h1> Animated weather icon </br> </h1>
-		<div class="row">
-			<h1> Temperature is </h1>
-			<h1 id="tempDisplay"> caculated now </h1>
-		</div>
+		<!--  Animated weather icon: https://codepen.io/joshbader/full/EjXgqr/ -->
+		</br>
+		</br>
+		
+		<!-- Display temperature -->	
+		<h1 id="tempDisplay"> Getting temperature now ... </h1>
 		<!-- Switch between C and F -->	
 		<label><input type="checkbox" id="F2C">  I want Celcius</label>
 	</div>
