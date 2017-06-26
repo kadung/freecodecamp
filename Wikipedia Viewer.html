@@ -5,7 +5,6 @@
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css">
 	
 </head>
 
@@ -15,6 +14,32 @@
 // IE support: https://cypressnorth.com/programming/cross-domain-ajax-request-with-json-response-for-iefirefoxchrome-safari-jquery/
 	
 	$(document).ready(function() {
+		document.getElementById('randomButton').onclick = function () {
+			location.href = "https://en.wikipedia.org/wiki/Special:Random";
+		};
+			
+		document.getElementById('searchButton').onclick = function () {
+			if (document.getElementById('searchForm').value != '') {
+				$("#mainForm").removeClass("centered");
+				$("#searchForm").addClass("afterSearch");
+				$("#buttonForm").hide();
+				var wikiSearchURL = "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + document.getElementById('searchForm').value + "&prop=info&inprop=url&utf8=&format=json&redirects";
+				$.ajax ({
+					url: wikiSearchURL,
+					success: function (data){
+						console.log(data);
+						for (var i=0 ; i< data.query.search.length ; i++) {
+							var content = "<div class=\"well container\">" + data.query.search[i].title + "</br>" + data.query.search[i].snippet + "</br></div>"; 
+							$("#result").append(content);
+						}
+					}
+				});
+			}
+			else {
+				console.log("Enter something to search");
+			}
+		};
+		
 		
 	});
 </script>
@@ -33,45 +58,92 @@
 		transform: translate(-50%, -50%);
 	}
 	
-	input[type=text] {
-		width: 180px;
-		box-sizing: border-box;
-		border: 2px solid #ccc;
-		border-radius: 4px;
-		font-size: 16px;
-		background-color: white;
-		background-image: url('http://www.metoffice.gov.uk/webfiles/1497862815576/images/icons/warnings/search_icon.svg');
-		background-position: 10px 10px; 
-		background-repeat: no-repeat;
-		padding: 12px 20px 12px 40px;
-		-webkit-transition: width 0.4s ease-in-out;
-		transition: width 0.4s ease-in-out;
-	}
-
-	/* When the input field gets focus, change its width to 100% */
-	input[type=text]:focus {
-		width: 100%;
-		
+	.afterSearch {
+		margin: 10px auto;
 	}
 	
+	#searchForm {
+		width: 700px;
+	}
+	
+	@media screen and (max-width: 800px) {
+		#searchForm {
+			width: 300px;
+		}
+	}
+		
 </style>	
 	
 <body>
 	<!-- Header -->
 	<div class="container-fluid text-center" id="header">
 		<br>
-		<h1>Wikipedia Viewer App</h1>
+		<h1>Wikipedia Search App</h1>
 		<br>
 	</div>
 	
 	<!-- Display Wikipedia -->	
-	<div class="text-center centered">
-		<h1><a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Click here for random article</a> or search for specific article</h1>
-		
+	<div class="text-center centered" id="mainForm">
 		<!-- Search button -->
-		<input type="text" name="search" placeholder="Searching..."> 
-		
-		
+		<div>
+			<input type="text" class="form-control" id="searchForm" placeholder="What do you looking for?">
+			</br>
+		</div>	
+		<!-- Button -->
+		<div class="row" id="buttonForm">
+			<div id="searchButton" class="col-xs-6">
+				<button class="btn btn-info">Search</button>
+			</div>
+			<div id="randomButton" class="col-xs-6">
+				<button class="btn btn-info">I am fabulous</button>
+			</div>
+		</div>
 	</div>
+	<div id="result"></div>
 </body>
  
+
+ <!-- Sample response : https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dave&prop=info&inprop=url&utf8=&format=json
+	 
+ {	"batchcomplete":"",
+	"continue":{"sroffset":10,"continue":"-||info"},
+	"query":{"searchinfo":{"totalhits":136566},
+	"search": [
+		{	"ns":0,
+			"title":"Dave",
+			"size":1099,
+			"wordcount":140,
+			"snippet":"<span class=\"searchmatch\">Dave</span> may refer to:   <span class=\"searchmatch\">Dave</span> (given name), a list of people and fictional characters <span class=\"searchmatch\">Dave</span> (artist) (born 1969), Swiss artist  <span class=\"searchmatch\">Dave</span> (film), a 1993 film starring","timestamp":"2017-06-06T13:23:13Z"
+		},
+		
+		{	"ns":0,
+			"title":"Dave Brubeck",
+			"size":55919,
+			"wordcount":5608,
+			"snippet":"David Warren &quot;<span class=\"searchmatch\">Dave</span>&quot; Brubeck (December 6, 1920 – December 5, 2012) was an American jazz pianist and composer, considered to be one of the foremost exponents","timestamp":"2017-06-21T21:19:32Z"
+		},
+		
+		{	"ns":0,
+			"title":"Dave Chappelle",
+			"size":48893,
+			"wordcount":4746,
+			"snippet":"Itzkoff, <span class=\"searchmatch\">Dave</span> (November 27, 2005). &quot;<span class=\"searchmatch\">Dave</span> Chappelle Is Alive and Well (and Playing Las Vegas)&quot;. The New York Times. Retrieved 2007-03-21.   &quot;Comedian <span class=\"searchmatch\">Dave</span> Chappelle","timestamp":"2017-06-10T13:56:20Z"
+		},
+		
+		{	"ns":0,
+			"title":"Dave Matthews Band",
+			"size":80688,
+			"wordcount":9350,
+			"snippet":"<span class=\"searchmatch\">Dave</span> Matthews Band, also known by the initialism DMB, is an American rock band that was formed in Charlottesville, Virginia in 1991. The founding members","timestamp":"2017-06-17T20:51:09Z"
+		},
+		
+		{	"ns":0,
+			"title":"Dave Grohl",
+			"size":70544,
+			"wordcount":7603,
+			"snippet":"ISBN 978-0-87930-895-7.   &quot;<span class=\"searchmatch\">Dave</span> Grohl's Lucite Dan Armstrong Ampeg &quot;Clear&quot; Guitar&quot;. FeelNumb.com. March 4, 2010. Retrieved October 12, 2011.   &quot;<span class=\"searchmatch\">Dave</span> Grohl biography&quot;","timestamp":"2017-06-21T19:54:47Z"
+		}
+		]
+		}
+		}
+ -->
