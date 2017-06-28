@@ -1,0 +1,2 @@
+var fs = required('fs');
+
