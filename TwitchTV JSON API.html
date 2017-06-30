@@ -1,0 +1,115 @@
+
+<head>
+	<title>Wikipedia Viewer</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+
+
+<script>
+// To access 3rd API (cross domain access), we can use CORS or JSONP. Recomendation: webserver should support these function first
+// IE support: https://cypressnorth.com/programming/cross-domain-ajax-request-with-json-response-for-iefirefoxchrome-safari-jquery/
+	
+	$(document).ready(function() {
+		document.getElementById('randomButton').onclick = function () {
+			location.href = "https://en.wikipedia.org/wiki/Special:Random";
+		};
+			
+		document.getElementById('searchButton').onclick = function () {
+			if (document.getElementById('searchForm').value != '') {
+				showWikiData();
+			}
+			else {
+				console.log("Enter something to search");
+			}
+		};
+		
+		$("#searchForm").keypress(function(key) {
+			if (key.keyCode == 13 && document.getElementById('searchForm').value != '') {
+				showWikiData();
+			}
+		});
+		
+		// Append data from wiki to div id result
+		function showWikiData() {
+			$("#mainForm").removeClass("centered");
+			$("#searchForm").addClass("afterSearch");
+			$("#buttonForm").hide();
+			$("#result").empty();
+			var wikiSearchURL = "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + document.getElementById('searchForm').value + "&prop=info&inprop=url&utf8=&format=json";
+			$.ajax ({
+				url: wikiSearchURL,
+				success: function (data){
+					//console.log(data);
+					for (var i=0 ; i< data.query.search.length ; i++) {
+						var content = "<a href=\"https://en.wikipedia.org/wiki/" + data.query.search[i].title.replace(" ","%20") + "\">" + "<div class=\"well container\"><b>" + data.query.search[i].title + "</b></br>" + data.query.search[i].snippet + " ... </br></div></a>"; 
+						$("#result").append(content);
+					}
+				},
+				cached: false
+			});
+		}
+	});
+</script>
+
+<style>
+	#header {
+		background-color: #007ec3;
+		color: white;
+	}
+	
+	.centered {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		/* bring your own prefixes */
+		transform: translate(-50%, -50%);
+	}
+	
+	.afterSearch {
+		margin: 10px auto;
+	}
+	
+	#searchForm {
+		width: 700px;
+	}
+	
+	@media screen and (max-width: 800px) {
+		#searchForm {
+			width: 300px;
+		}
+	}
+		
+</style>	
+	
+<body>
+	<!-- Header -->
+	<div class="container-fluid text-center" id="header">
+		<br>
+		<h1>Wikipedia Search App</h1>
+		<p style="color:white">Homework with <a href="https://www.freecodecamp.com" target="_blank" style="color:white"><span class="fa fa-free-code-camp"></span> FreeCodeCamp.com</a></p>
+	</div>
+	
+	<!-- Display Wikipedia -->	
+	<div class="text-center centered" id="mainForm">
+		<!-- Search button -->
+		<div>
+			<input type="text" class="form-control" id="searchForm" placeholder="What do you looking for?">
+			</br>
+		</div>	
+		<!-- Button -->
+		<div class="row" id="buttonForm">
+			<div id="searchButton" class="col-xs-6">
+				<button class="btn btn-info">Search</button>
+			</div>
+			<div id="randomButton" class="col-xs-6">
+				<button class="btn btn-info">I am fabulous</button>
+			</div>
+		</div>
+	</div>
+	<div id="result"></div>
+</body>
+ 

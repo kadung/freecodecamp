@@ -1,2 +1,0 @@
-var fs = required('fs');
-
