@@ -66,10 +66,8 @@ var app = express();
 
 // Add stylus middleware to our app
 app.use(stylus.middleware('public'));
-// Respond for get request
-app.get('/', function (req, res) {
-	
-});
+// Set index.html in public folder to be broadcast
+app.use(express.static('public'));
 // Open port
 app.listen(port || 3000);
 
