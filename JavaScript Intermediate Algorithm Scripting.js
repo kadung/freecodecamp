@@ -121,13 +121,51 @@ myReplace("He is Sleeping on the couch", "Sleeping", "sitting");
 /*
 	Pig Latin
 */
-	
+	function translatePigLatin(str) {
+		if (/[ueoai]/.test(str[0])){
+			return str + "way";
+		}
+		else {
+			for (var i=0; i< str.length; i++){
+				if (/[ueoai]/.test(str[i])){
+					var firstChar = str.substr(0,i);
+					var splitStr = str.substr(i);
+					break;
+				}
+			}
+			return splitStr + firstChar + "ay";
+		}
+	}
+
+translatePigLatin("Consonant");
 
 
 /*
 	DNA Pairing
 */
-	
+	function pairElement(str) {
+		var newArr = [];
+		var splitStr = str.split('');
+		for (var i=0; i< splitStr.length; i++){
+			switch (splitStr[i]){
+				case "A":
+					newArr.push(["A", "T"]);
+					break;
+				case "T":
+					newArr.push(["T", "A"]);
+					break;
+				case "G":
+					newArr.push(["G", "C"]);
+					break;
+				case "C":
+					newArr.push(["C", "G"]);
+					break;
+			}
+		}
+		return newArr;
+	}
+
+pairElement("GCG");
 
 	
 /*
