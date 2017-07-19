@@ -171,53 +171,289 @@ pairElement("GCG");
 /*
 	Missing letters
 */
-	
+function fearNotLetter(str) {
+  var chars = str.split('');
+  var firstCharNum = chars[0].charCodeAt();
+  var lastCharNum = chars[chars.length-1].charCodeAt();
+  var charNum = [];
+  for (var i= firstCharNum; i<= lastCharNum; i++){
+    charNum.push(String.fromCharCode(i));
+  }
+  if (chars.length == charNum.length){
+    return undefined;
+  }
+  else{
+    for (var j=0; j< charNum.length; j++){
+      if (charNum[j] != chars[j]){
+        return charNum[j];
+      }
+    } 
+  }
+}
+
+fearNotLetter("abce");	
 
 
 /*
 	Boo who
 */
-	
+function booWho(bool) {
+  // What is the new fad diet for ghost developers? The Boolean.
+  if (typeof bool === 'boolean'){
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+booWho(true);	
 
 
 /*
 	Sorted Union
 */
-	
+function uniteUnique(arr) {
+  // Change all arguments to contain in an array
+  var argvToArray = Array.from(arguments);
+  // Merge all arrays in to 1 array
+  var flattenArr = argvToArray.reduce(
+    (accumulator, currentValue) => accumulator.concat(currentValue),[] 
+  );
+  // developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+  // The Set object lets you store unique values of any type but keep th old order
+  return Array.from(new Set(flattenArr));
+}
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);	
 
 
 /*
 	Convert HTML Entities
 */
+function convertHTML(str) {
+  var regex = /[&<>"']/g;
+  
+  return test = str.replace(regex, function (x){
+    switch (x) {
+      case '&':
+        return '&amp;';
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '"':
+        return '&quot;';
+      case '\'':
+        return '&apos;';
+    } 
+  });
+}
+
+convertHTML("<>");
 
 
 
 /*
 	Spinal Tap Case
 */
-	
+function spinalCase(str) {
+  // Add a Space in between if a lowerCase is next an upperCase then change all to lowercase
+  var temp =  str.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+  // Split string to array when there are space or underscored. Regex can also be /[_\s]/
+  var splitTemp = temp.split(/\s|_/);
+  // Join array to string again with dash in between
+  return splitTemp.join('-');
+  
+}
+
+spinalCase('AllThe-small Things');	
+
 
 	
 /*
 	Sum All Odd Fibonacci Numbers
 */
-	
+function sumFibs(num) {
+  var preNum = 1;
+  var curNum = 1;
+  var total = 1;
+  while (curNum <= num){
+    if (curNum % 2 != 0){
+      total += curNum;
+    }
+    var temp = curNum;
+    curNum += preNum;
+    preNum = temp;
+  }
+  return total;
+}
+
+sumFibs(75025);	
 
 
 /*
 	Sum All Primes
 */
-	
+function isPrime(num){
+  if (num == 1) {
+		// 1 is not a prime number so sum is 0
+		return false;
+	}
+	else if (num > 1){
+		for (var i= 2; i<num; i++) {  
+			if (num % i == 0){
+				return false;
+			}
+	    }	
+      return true;
+    }
+}
+
+function sumPrimes(num) {
+  var total = 0;
+  for (var i = 2 ; i <= num ; i++){
+    if (isPrime(i)){
+      total += i;
+    }
+  }
+  return total;
+}
+
+sumPrimes(10);
+
 
 
 /*
 	Smallest Common Multiple
 */
+	// For 2 digits
+	function smallestCommonFor2 (num1, num2) {
+		if (num1 > num2) {
+			var temp = num1 ;
+			while (num1 % num2 !== 0){
+			num1 += temp;
+			}
+			return num1;
+		}
+		else {
+			var temp = num2 ;
+			while (num2 % num1 !== 0){
+			num2 += temp;
+			}
+			return num2;
+		}
 	
+	}
+	
+	// For range digit in arr: Solution 1 - 2 function
+	function continueLoop(num, max, min){
+		for (var i = min ; i< max; i++){
+			if (num % i != 0){
+				//Continue loop
+				return true;
+			}
+		}
+		//Stop the loop
+		return false;
+	}
+	function smallestCommons(arr) {
+		var maxNum = Math.max.apply(null, arr);
+		var minNum = Math.min.apply(null, arr); 
+		var result = maxNum ;
+		while (continueLoop(result, maxNum, minNum)){
+			result += maxNum;
+		}
+		return result;
+	}
 
+	
 
 /*
 	Finders Keepers
 */
+function findElement(arr, func) {
+  for (var i=0; i< arr.length; i++){
+    if (func(arr[i])){
+      return arr[i];
+    }
+  }
+}
 
+findElement([1, 2, 3, 4], function(num){ return num % 2 === 0; });
+
+
+/*
+	Drop it
+*/
+function dropElements(arr, func) {
+  // Drop them elements.
+  for (var i=0; i< arr.length; i++){
+    if (func(arr[i])){
+      return arr.slice(i);
+    }
+  }
+  return [];
+}
+
+dropElements([0, 1, 0, 1], function(n) {return n === 1;});
+
+
+
+/*
+	Steamroller
+*/
+function steamrollArray(arr) {
+  // I'm a steamroller, baby
+  var newArr = [];
+  
+  // This function is only called after below this creation
+  var flatArr = function(arg){
+    if (!Array.isArray(arg)){
+      newArr.push(arg);
+    }
+    else{
+      for (var a in arg){
+        flatArr(arg[a]);
+      }
+    }
+  };
+  
+  arr.forEach(flatArr);
+  return newArr;
+  
+  //Function hoisted can be called any where
+  function flatArray (arg) { }
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
+
+
+/*
+	Binary Agents
+*/
+function binaryAgent(str) {
+  var newStr = [];
+  // Split string to Array
+  var splitStr = str.split(' ');
+  // Loop throught
+  for (var i in splitStr){
+    var binaryToDecimal = parseInt(splitStr[i],2);
+    var decimalToString = String.fromCharCode(binaryToDecimal);
+    newStr.push(decimalToString);
+  }
+  return newStr.join("");
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+
+/*
+	Everything Be True
+*/
+
+
+
+/*
+	Arguments Optional
+*/
 
