@@ -450,10 +450,73 @@ binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 0110
 /*
 	Everything Be True
 */
+//Solution 1
+function truthCheck(collection, pre) {
+  for (var i in collection) {
+    var data = collection[i];
+    var value = collection[i][pre];
+    
+    if (data.hasOwnProperty(pre)) {
+        if (value === undefined || value === null || value === '' || Number.isNaN(value) || value < 1){
+          return false;
+        }
+    }
+    else{
+      return false;
+    }
+  }
+  return true;
+}
+truthCheck([{"single": "double"}, {"single": NaN}], "single");
+
+
+
+//Solution 2
+function truthCheck(collection, pre) {
+  return collection.every(function (element) {
+	  // Boolean(element[pre]) means that: if the value is omitted or is 0, -0, null, false, NaN, undefined, or the empty string (""), the boolean of that object has value of false
+    return element.hasOwnProperty(pre) && Boolean(element[pre]);
+  });
+}
 
 
 
 /*
 	Arguments Optional
 */
+// Stupid Solution
+function addTogether() {
+  //return Number.isInteger(arguments[1]);
+  if (arguments.length > 1 ){
+      if (Number.isInteger(arguments[0]) && Number.isInteger(arguments[1])){
+        return arguments[0] + arguments[1];
+      }
+    else {
+      return undefined;
+    }
+  }
+  else if (arguments.length === 1){
+    var firstArgv = arguments[0];
+    if (Number.isInteger(firstArgv)){
+	// This is closure function 
+	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
+      return function (y) {
+        if (Number.isInteger(y)){
+        return firstArgv + y;
+        }
+        else {
+          return undefined;
+        }
+      }; 
+    }
+    else{
+      return undefined;
+    }
+    
+  }
+  else {
+    return "We need at least 1 agrv here guys";
+  }
+}
 
+addTogether(2, 3);
