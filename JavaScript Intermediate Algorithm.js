@@ -211,7 +211,7 @@ booWho(true);
 
 
 /*
-	Sorted Union
+	Sorted Union: Remove duplication but keep the original number
 */
 function uniteUnique(arr) {
   // Change all arguments to contain in an array
