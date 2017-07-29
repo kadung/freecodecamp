@@ -256,19 +256,109 @@ updateInventory(curInv, newInv);
 	
 /*
 	No repeats please
+	Regex: http://crookedcode.com/tag/heaps-algorithm/
 */
+function permAlone(str) {
+  //create variable to store number of perms without a repeat
+  var noDupes = 0;
+
+  //split string into array
+  var strArray = str.split("");
+
+  // Call with an array of the original string
+  findPerm(strArray.length, strArray);
+
+  return noDupes;
+  
+  
+  
+  // Heap's Algorithm
+  function findPerm(n, arr) {
+    // If only 1 element, just output the array
+    if (n == 1) {
+      //check for duplicates
+      if(!(/([a-zA-Z])\1+/).test(arr.join(""))){
+         noDupes += 1;
+      }
+      return;
+    }
+ 
+    for (var i = 0; i < n; i+= 1) {
+        findPerm(n - 1, arr);
+ 
+        // If n is even
+        if (n % 2 === 0) {
+            swap(i, n - 1);
+        } else {
+            swap(0, n - 1);
+        }
+    }
+ 
+   function swap(idxA, idxB) {
+      var tmp = arr[idxA];
+      arr[idxA] = arr[idxB];
+      arr[idxB] = tmp;
+      }
+   }
+}
+
+permAlone('aab');
 
 
 
 /*
 	Make a Person
+	Object Model: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model
+	Closure: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 */
+var Person = function(firstAndLast) {
+    var split = firstAndLast.split(' ');
+    // Complete the method below and implement the others similarly
+    this.getFullName = function() {
+      return split.join(' ');
+    };
+    //
+    this.getLastName = function() {
+      return split[1];
+    };
+    //
+    this.getFirstName = function() {
+      return split[0];
+    };
+    //
+    this.setFirstName = function(first) {
+      split[0] = first;
+    };
+    //
+    this.setLastName = function(last) {
+      split[1] = last;
+    };
+    //
+    this.setFullName = function(full){
+      split = full.split(' ');
+    };
+};
 
+var bob = new Person('Bob Ross');
+bob.getFullName();
 
 	
 /*
 	Map the Debris
 */
+function orbitalPeriod(arr) {
+  var GM = 398600.4418;
+  var earthRadius = 6367.4447;
+  
+  for (var i in arr){
+    var avgAltitude = arr[i].avgAlt;
+    delete arr[i].avgAlt;
+    arr[i].orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt(Math.pow(avgAltitude + earthRadius, 3) / GM));
+  }
+  return arr;
+}
+
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
 
 
 
