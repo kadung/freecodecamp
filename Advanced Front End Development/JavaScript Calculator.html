@@ -10,62 +10,6 @@
 	
 </head>
 
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		// Press button 0
-		$("#button0").click(function (){
-			buttonPress("0");
-		});	
-		
-		// Press button 2
-		$("#button2").click(function (){
-			buttonPress("2");
-		});
-		// Press button 3
-		$("#button3").click(function (){
-			buttonPress("3");
-		});
-		// Press button 4
-		$("#button4").click(function (){
-			buttonPress("4");
-		});
-		// Press button 5
-		$("#button5").click(function (){
-			buttonPress("5");
-		});
-		// Press button 6
-		$("#button6").click(function (){
-			buttonPress("6");
-		});
-		// Press button 7
-		$("#button7").click(function (){
-			buttonPress("7");
-		});
-		// Press button 8
-		$("#button8").click(function (){
-			buttonPress("8");
-		});
-		// Press button 9
-		$("#button9").click(function (){
-			buttonPress("9");
-		});
-		
-		
-		// Function display number
-		function buttonPress(num){
-			var temp = $("#userInput").text();
-			if (temp == 0){
-				$("#userInput").text(num);
-			}
-			else{
-				temp += num;
-				$("#userInput").text(temp);
-			}
-		}
-	});
-</script>
-
 <style>
 	body{
 		background-color: #ede7d5;
@@ -113,6 +57,118 @@
 	
 </style>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		// Global variable
+		var noDot = true;
+		
+		// Press button CE
+		$("#buttonCE").click(function(){
+			$("#userInput").text("0");
+			noDot = true;
+		});
+		// Press button C
+		$("#buttonC").click(function(){
+			$("#userInput").text("0");
+			$("#formula").text("0");
+			noDot = true;
+		});
+		// Press Del button
+		$("#buttonDel").click(function (){
+			var temp = $("#userInput").text();
+			if (temp)
+			$("#userInput").text(temp.slice(0, -1));
+		});
+		
+		// Press button 0
+		$("#button0").click(function (){
+			buttonPress("0");
+		});	
+		
+		// Press button 1
+		$("#button1").click(function (){
+			buttonPress("1");
+		});	
+		
+		// Press button 2
+		$("#button2").click(function (){
+			buttonPress("2");
+		});
+		
+		// Press button 3
+		$("#button3").click(function (){
+			buttonPress("3");
+		});
+		
+		// Press button 4
+		$("#button4").click(function (){
+			buttonPress("4");
+		});
+		
+		// Press button 5
+		$("#button5").click(function (){
+			buttonPress("5");
+		});
+		
+		// Press button 6
+		$("#button6").click(function (){
+			buttonPress("6");
+		});
+		
+		// Press button 7
+		$("#button7").click(function (){
+			buttonPress("7");
+		});
+		
+		// Press button 8
+		$("#button8").click(function (){
+			buttonPress("8");
+		});
+		
+		// Press button 9
+		$("#button9").click(function (){
+			buttonPress("9");
+		});
+		
+		// Press button dot
+		$("#buttonDot").click(function (){
+			if (noDot){
+				buttonPress(".");
+				noDot = false;
+			}
+		});
+		
+		// Press button +/-
+		$("#buttonCha").click(function(){
+			var temp = $("#userInput").text();
+			switch (temp[0]) {
+				case 0:
+					break;
+				case "+":
+					$("#userInput").text(temp.slice(1));
+					break;
+				default:
+					$("#userInput").text("+" + temp);
+					break;
+			}
+			
+			
+		});
+		
+		// Function display number
+		function buttonPress(num){
+			var temp = $("#userInput").text();
+			if (temp == 0){
+				$("#userInput").text(num);
+			}
+			else{
+				temp += num;
+				$("#userInput").text(temp);
+			}
+		}
+	});
+</script>
+
 
 <div class= "body" >
 	<div >
@@ -148,7 +204,7 @@
 			</form>
 			
 			<form>
-				<button type="button" class="butt" onclick="buttonPress('1')">1</button>
+				<button type="button" class="butt" id="button1">1</button>
 				<button type="button" class="butt" id="button2">2</button>
 				<button type="button" class="butt" id="button3">3</button>
 				<button type="button" class="butt" id="buttonPlus">+</button>
