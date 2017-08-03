@@ -61,6 +61,8 @@
 	$(document).ready(function() {
 		// Global variable
 		var noDot = true;
+		var noEqual = true;
+		var total = 0;
 		
 		// Press button CE
 		$("#buttonCE").click(function(){
@@ -76,8 +78,46 @@
 		// Press Del button
 		$("#buttonDel").click(function (){
 			var temp = $("#userInput").text();
-			if (temp)
-			$("#userInput").text(temp.slice(0, -1));
+			if (temp.length === 1){
+				$("#userInput").text("0");
+			}
+			else {
+				$("#userInput").text(temp.slice(0, -1));
+			}
+		});
+		
+		// Press button +
+		$("#buttonPlus").click (function(){
+			var userInput = $("#userInput").text();
+			var formula = $("#formula").text();
+			if (formula == 0) {
+				var temp = userInput + "+"
+			}
+			else {
+				var temp = formula + userInput + "+";
+			}
+			$("#formula").text(temp);
+			$("#userInput").text("+");
+			
+			total += Number(userInput);
+		});
+		
+		// Press button =
+		$("#buttonEqual").click(function() {
+			noEqual = false;
+			var userInput = $("#userInput").text();
+			var formula = $("#formula").text();
+			var temp = formula + userInput;
+			
+			switch (formula[formula.length -1]){
+				case "+":
+					total += Number(userInput);
+					break;
+			}
+			
+			$("#formula").text(temp);
+			
+			$("#userInput").text(total);
 		});
 		
 		// Press button 0
@@ -158,7 +198,7 @@
 		// Function display number
 		function buttonPress(num){
 			var temp = $("#userInput").text();
-			if (temp == 0){
+			if (temp == 0 || temp == "+" || temp == "-" || temp == "X" || temp == "/"){
 				$("#userInput").text(num);
 			}
 			else{
